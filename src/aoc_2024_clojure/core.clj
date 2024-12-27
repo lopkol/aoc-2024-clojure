@@ -1,7 +1,17 @@
 (ns aoc-2024-clojure.core
-  (:gen-class))
+  (:require aoc-2024-clojure.solutions.day-01))
+
+(defn two-digit-num
+  [num]
+  (if (< (count num) 2)
+    (str "0" num)
+    (str num)))
 
 (defn -main
-  "I don't do a whole lot ... yet."
-  [& args]
-  (println "Hello, World!"))
+  "Execute the solution to the given day's given problem."
+  [day problem & args]
+  (println (apply
+            (deref (resolve (symbol
+                             (str "aoc-2024-clojure.solutions.day-" (two-digit-num day))
+                             (str "solve" problem))))
+            args)))
